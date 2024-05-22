@@ -1,5 +1,5 @@
-// Initialize Gun
-const gun = Gun();
+// Initialize Gun with a relay peer server
+const gun = Gun(['https://gun-manhattan.herokuapp.com/gun']);
 
 // Reference to the chat node
 const chat = gun.get('chat');
@@ -18,7 +18,7 @@ function addMessage(username, message) {
 }
 
 // Listen for new messages
-chat.map().once((data, id) => {
+chat.map().on((data, id) => {
     if (data) {
         addMessage(data.username, data.message);
     }
